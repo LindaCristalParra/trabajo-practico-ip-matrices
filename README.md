@@ -24,3 +24,6 @@ Para ello se almacenan los valores de temperaturas en un arreglo bidimensional (
 #### Lote de Prueba - Temperaturas de la matriz principal para carga automática
 ![tabla](/images/tabla.jpg)
 
+
+Enlace a PSEUDOCODIGO: https://docs.google.com/document/d/1vkd6356O2crcZCB6GIitEgP6BGJOyy9v6rOsSuR6MEU/edit?usp=sharing
+Enlace a TRAZA: https://docs.google.com/spreadsheets/d/1zCVdM65K6Mn7pZMvbdiQ1B7vidjulkL82EiRrCQb7PQ/edit?usp=sharing
