@@ -42,7 +42,7 @@ function obtenerNombreMes(int $indiceMes) {
             }      
 }
 
-function manejarError(int $nroError){
+function manejarError(int $nroError) {
     switch($nroError){
         case 1:
             echo "Error: Valor inválido. Por favor, ingrese un número.";
@@ -100,7 +100,7 @@ function tempAnioMes(array $matriz, int $anio, int $mes) {
     echo "La temperatura de ", obtenerNombreMes($mes), " del año ", $anio, " es: ", $temp,  " °C." ;
 }
 
-function mostrarTempMesYpromedio(array $matriz, int $mes){
+function mostrarTempMesYpromedio(array $matriz, int $mes) {
     $fila = 0;
     $suma = 0;
     $promedio = 0;
@@ -118,3 +118,25 @@ function mostrarTempMesYpromedio(array $matriz, int $mes){
     //mostrarDatosMatriz($matrizTempMes, 1);
 }
 
+function matrizInvierno(array $matriz) {
+    $fila = 0;
+    $col = 1;
+    $jul = 7;
+    $sep = 9;
+    $meses = 3;
+    $anios = (count($matriz) - 5);
+    $matrizTempInvierno =[];
+
+    for($i = $anios; $i <= (count($matriz) - 1); $i++){
+        $matrizTempInvierno[$fila][0] = $matriz[$i][0];
+        
+        for($j = $jul; $i <= $sep; $i++){
+            $matrizTempInvierno[$fila][$col] = $matriz[$i][$j];
+            $col++;
+        }
+        $col = 1;
+        $fila++;
+    }
+    //mostrarDatosMatriz($matrizTempInvierno, $jul)
+    return $matrizTempInvierno;
+}
