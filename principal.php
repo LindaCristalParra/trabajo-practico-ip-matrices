@@ -79,3 +79,23 @@ $matriz= array($a_2014,$a_2015,$a_2016,$a_2017,$a_2018,$a_2019,$a_2020,$a_2021,$
 
 return $matriz;
 }
+
+function tempAnioMes(array $matriz, int $anio, int $mes) {
+    $fila = 0;
+    $temp = 0;
+    $cantAnios = count($matriz);
+    $tempEncontrada = false;
+
+    do {
+        if($matriz[$fila][0] == $anio){
+            $temp == $matriz[$fila][$mes];
+            $tempEncontrada = true;
+        }
+        $fila++;
+    } while($fila < $cantAnios && $tempEncontrada != true);
+
+    if($tempEncontrada == false) {
+        manejarError(2);
+    }
+    echo "La temperatura de ", obtenerNombreMes($mes), " del año ", $anio, " es: ", $temp,  " °C." ;
+}
