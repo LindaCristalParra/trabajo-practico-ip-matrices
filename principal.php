@@ -99,3 +99,22 @@ function tempAnioMes(array $matriz, int $anio, int $mes) {
     }
     echo "La temperatura de ", obtenerNombreMes($mes), " del año ", $anio, " es: ", $temp,  " °C." ;
 }
+
+function mostrarTempMesYpromedio(array $matriz, int $mes){
+    $fila = 0;
+    $suma = 0;
+    $promedio = 0;
+    $anios = count($matriz);
+    $matrizTempMes = [];
+ 
+    while($fila < $anios){
+        $matrizTempMes[$fila][1] = $matriz[$fila][$mes];
+        $suma++;
+        $fila++;
+    }
+    $promedio = $suma/$anios;
+    echo "La temperatura promedio del mes ", obtenerNombreMes($mes), " es ", $promedio, " ." ;
+    echo "Y las temperaturas segun el año son:" ;
+    //mostrarDatosMatriz($matrizTempMes, 1);
+}
+
