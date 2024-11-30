@@ -310,3 +310,107 @@ function matrizAsociativa(array $matriz) {
 
     return $matrizAsociativa;
 }
+
+// PROGRAMA principal(): Control de temperaturas en Neuquén durante los últimos 10 años.
+    // Declaración de variables
+    $matrizTemperaturas = array(); // Matriz para almacenar temperaturas de 10 años y 12 meses + promedio anual
+    $inicializarManual = "";       // Variable para determinar si la carga de datos es manual o automática
+    $matrizPrimavera = array();    // Matriz para almacenar temperaturas de primavera (octubre-diciembre) por año
+    $matrizInvierno = array();     // Matriz para almacenar temperaturas de invierno (julio-septiembre) de los últimos 5 años
+    $matrizAsociativa = array();   // Matriz asociativa para consolidar todas las matrices
+    $opcionMenu = -1;              // Variable para guardar la opción seleccionada del menú
+    $mes = 0;                      // Variable para almacenar el mes ingresado
+    $anio = 0;                     // Variable para almacenar el año ingresado
+
+    // Inicio del programa: mensaje de bienvenida
+    echo "Bienvenido al programa para llevar control de las temperaturas de la ciudad de Neuquén considerando los últimos 10 años\n";
+    echo "¿Desea operar cargando manualmente las temperaturas? (s/n): ";
+    $inicializarManual = trim(fgets(STDIN));
+
+    // Determina el modo de carga de datos (manual o automática)
+    if ($inicializarManual === "s") {
+        $matrizTemperaturas = cargaManual(); // Llama a la función para cargar datos manualmente
+    } else {
+        echo "Se cargarán datos automáticos para iniciar el programa\n";
+        $matrizTemperaturas = cargaAutomatica(); // Llama a la función para cargar datos automáticamente
+    }
+
+    // Menú principal del programa
+    do {
+        echo "Menú de opciones:\n";
+        echo "1. Cargar matriz de temperaturas automáticamente.\n";
+        echo "2. Cargar matriz de temperaturas manualmente.\n";
+        echo "3. Mostrar contenido de la matriz.\n";
+        echo "4. Mostrar temperatura de un año y mes específicos.\n";
+        echo "5. Mostrar temperaturas de todos los meses de un año.\n";
+        echo "6. Mostrar temperaturas de un mes en todos los años y su promedio.\n";
+        echo "7. Mostrar temperaturas máximas y mínimas con año y mes.\n";
+        echo "8. Crear y mostrar matriz de primavera (oct-nov-dic).\n";
+        echo "9. Crear y mostrar matriz de invierno (jul-ago-sep) de últimos 5 años.\n";
+        echo "10. Crear arreglo asociativo con todas las matrices.\n";
+        echo "0. Salir.\n";
+        echo "Seleccione una opción, ingresando el número: ";
+        $opcionMenu = (int) trim(fgets(STDIN));
+
+        // Ejecución de opciones del menú
+        switch ($opcionMenu) {
+            case 1:
+                $matrizTemperaturas = cargaAutomatica();
+                break;
+            case 2:
+                $matrizTemperaturas = cargaManual();
+                break;
+            case 3:
+                mostrarDatosMatriz($matrizTemperaturas, 1);
+                break;
+            case 4:
+                echo "Ingrese año: ";
+                $anio = (int) trim(fgets(STDIN));
+                echo "Ingrese mes: ";
+                $mes = (int) trim(fgets(STDIN));
+                if (validarAnio($anio) && validarMes($mes)) {
+                    mostrarTempAnioMes($matrizTemperaturas, $anio, $mes);
+                } else {
+                    echo "Datos inválidos, por favor ingresar un año entre 2014 y 2023 y un mes entre 1 y 12.\n";
+                }
+                break;
+            case 5:
+                echo "Ingrese año: ";
+                $anio = (int) trim(fgets(STDIN));
+                if (validarAnio($anio)) {
+                    mostrarTempAnio($matrizTemperaturas, $anio);
+                } else {
+                    echo "Datos inválidos, por favor ingresar un año entre 2014 y 2023.\n";
+                }
+                break;
+            case 6:
+                echo "Ingrese mes: ";
+                $mes = (int) trim(fgets(STDIN));
+                if (validarMes($mes)) {
+                    mostrarTempMesYpromedio($matrizTemperaturas, $mes);
+                } else {
+                    echo "Datos inválidos, por favor ingresar un mes entre 1 y 12.\n";
+                }
+                break;
+            case 7:
+                mostrarTempExtremas($matrizTemperaturas);
+                break;
+            case 8:
+                $matrizPrimavera = matrizPrimavera($matrizTemperaturas);
+                break;
+            case 9:
+                $matrizInvierno = matrizInvierno($matrizTemperaturas);
+                break;
+            case 10:
+                $matrizAsociativa = matrizAsociativa($matrizTemperaturas);
+                break;
+            case 0:
+                echo "Saliendo del programa.\n";
+                break;
+            default:
+                manejarError(4);
+                echo "Opción inválida. Intente nuevamente.\n";
+                break;
+        }
+    } while ($opcionMenu !== 0);
+
