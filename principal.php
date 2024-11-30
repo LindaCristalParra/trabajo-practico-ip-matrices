@@ -96,6 +96,41 @@ $matriz= array($a_2014,$a_2015,$a_2016,$a_2017,$a_2018,$a_2019,$a_2020,$a_2021,$
 return $matriz;
 }
 
+function cargaManual() {
+    // Declaración de un arreglo bidimensional para almacenar las temperaturas de cada mes, guardando en el primer índice el año
+    $matrizTemp = array();
+    $anio = 2014;
+    $entradaTemp = 0.0;
+
+    // Recorrer los años (filas de la matriz)
+    for ($i = 0; $i < 10; $i++) {
+        // Primera columna de cada fila almacena el año correspondiente
+        $matrizTemp[$i][0] = $anio;
+
+        // Recorrer los meses (columnas de la matriz)
+        for ($j = 1; $j <= 12; $j++) {
+            do {
+                echo "Ingrese la temperatura para el año $anio y el mes " . obtenerNombreMes($j) . ": ";
+                $entradaTemp = trim(fgets(STDIN));
+
+                // Validar si el valor ingresado es numérico
+                if (!is_numeric($entradaTemp)) {
+                    manejarError(1); // Manejo del error según tu lógica
+                }
+            } while (!is_numeric($entradaTemp));
+
+            // Almacenar la temperatura en la matriz
+            $matrizTemp[$i][$j] = (float)$entradaTemp;
+        }
+
+        // Incrementar el año para la siguiente fila
+        $anio++;
+    }
+
+    // Retornar la matriz con las temperaturas cargadas
+    return $matrizTemp;
+}
+
 function tempAnioMes(array $matriz, int $anio, int $mes) {
     $fila = 0;
     $temp = 0;
