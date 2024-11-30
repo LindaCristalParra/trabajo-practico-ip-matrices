@@ -131,6 +131,26 @@ function cargaManual() {
     return $matrizTemp;
 }
 
+function mostrarDatosMatriz(array $matriz, int $indiceInicial): void {
+    $cantAnios = count($matriz); // Obtener la cantidad de años (filas de la matriz)
+
+    for ($i = 0; $i < $cantAnios; $i++) { // Iterar sobre los años
+        echo "Año " . $matriz[$i][0] . ": <br>"; // Mostrar el año (primer elemento de la fila)
+        $textoMeses = "";
+
+        for ($j = 1; $j < count($matriz[$i]); $j++) { // Iterar sobre los meses de cada año
+            $nombreMes = obtenerNombreMes($indiceInicial + $j - 1); // Obtener el nombre del mes
+            $textoMeses .= $nombreMes . ": " . $matriz[$i][$j] . ", "; // Concatenar datos
+        }
+
+        // Eliminar la última coma y espacio del texto generado
+        $textoMeses = substr($textoMeses, 0, -2);
+        echo $textoMeses . "<br><br>"; // Mostrar los datos del año
+    }
+}
+
+
+
 function tempAnioMes(array $matriz, int $anio, int $mes) {
     $fila = 0;
     $temp = 0;
