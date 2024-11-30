@@ -216,6 +216,41 @@ function mostrarTempMesYpromedio(array $matriz, int $mes) {
     //mostrarDatosMatriz($matrizTempMes, 1);
 }
 
+function mostrarTempExtremas(array $matriz): void {
+    // Inicializar valores máximos y mínimos con el primer valor de la matriz
+    $maximo = $matriz[0][1];
+    $minimo = $matriz[0][1];
+	
+    // Inicializar posiciones del máximo y mínimo
+    $posMax = [0, 1]; // Fila y columna del valor máximo
+    $posMin = [0, 1]; // Fila y columna del valor mínimo
+
+    // Recorrer la matriz para buscar los máximos y mínimos
+    for ($i = 0; $i < count($matriz); $i++) {
+        for ($j = 1; $j <= count($matriz[$i]) -1 ; $j++) { // Comenzar en 1 porque la columna 0 contiene el año
+            if ($matriz[$i][$j] > $maximo) {
+                $maximo = $matriz[$i][$j];
+                $posMax = [$i, $j];
+            }
+            if ($matriz[$i][$j] < $minimo) {
+            	
+                $minimo = $matriz[$i][$j];
+                $posMin = [$i, $j];
+            }
+            
+        }
+    }
+
+    // Mostrar resultados
+    echo "Máxima temperatura: " . $maximo . "<br>" .
+         " Año: " . $matriz[$posMax[0]][0] . 
+         " Mes: " . obtenerNombreMes($posMax[1]) . "<br> <br>";
+
+    echo "Mínima temperatura: " . $minimo . "<br>" . 
+         " Año: " . $matriz[$posMin[0]][0] . 
+         " Mes: " . obtenerNombreMes($posMin[1]) . "<br> <br>";
+}
+
 function matrizInvierno(array $matriz) {
     $fila = 0;
     $col = 1;
