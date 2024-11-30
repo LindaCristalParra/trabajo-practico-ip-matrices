@@ -171,6 +171,33 @@ function tempAnioMes(array $matriz, int $anio, int $mes) {
     echo "La temperatura de ", obtenerNombreMes($mes), " del año ", $anio, " es: ", $temp,  " °C." ;
 }
 
+function mostrarTempAnio(array $matriz, int $anioSeleccionado): void {
+    $indiceAnio = -1; // Inicializar el índice como no encontrado
+    $i = 0; // Inicializar contador
+    $cantAnios = count($matriz); // Total de filas (años) en la matriz
+
+    // Búsqueda del índice del año usando un bucle do-while
+    do {
+        if ($matriz[$i][0] == $anioSeleccionado) {
+            $indiceAnio = $i; // Guardar índice si el año coincide
+        }
+        $i++;
+    } while ($indiceAnio == -1 && $i < $cantAnios);
+
+    // Validar si se encontró el año
+    if ($indiceAnio == -1) {
+        manejarError(3);
+        return;
+    }
+
+    // Mostrar las temperaturas del año seleccionado
+    echo "Año seleccionado: " . $matriz[$indiceAnio][0] . "<br>";
+    for ($j = 1; $j <= count($matriz[$indiceAnio])-1; $j++) {
+        echo "Mes " . obtenerNombreMes($j) . ": " . $matriz[$indiceAnio][$j] . "<br>";
+    }
+}
+
+
 function mostrarTempMesYpromedio(array $matriz, int $mes) {
     $fila = 0;
     $suma = 0;
