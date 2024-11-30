@@ -251,6 +251,29 @@ function mostrarTempExtremas(array $matriz): void {
          " Mes: " . obtenerNombreMes($posMin[1]) . "<br> <br>";
 }
 
+function matrizPrimavera(array $matriz): array {
+    // Inicializar la matriz de primavera
+    $matrizPrimavera = [];
+
+    // Recorrer cada fila de la matriz original
+    for ($i = 0; $i < count($matriz); $i++) {
+        // Crear una fila en la matriz de primavera con el año y las temperaturas de los meses seleccionados
+        $filaPrimavera = [];
+        $filaPrimavera[0] = $matriz[$i][0]; // Guardar el año
+        for ($j = 1; $j <= 3; $j++) {
+            $filaPrimavera[$j] = $matriz[$i][9 + $j]; // Guardar octubre, noviembre y diciembre
+        }
+        // Agregar la fila a la matriz de primavera
+        $matrizPrimavera[] = $filaPrimavera;
+    }
+
+    // Mostrar los datos de la matriz de primavera
+    mostrarDatosMatriz($matrizPrimavera, 10);
+
+    // Retornar la matriz de primavera
+    return $matrizPrimavera;
+}
+
 function matrizInvierno(array $matriz) {
     $fila = 0;
     $col = 1;
