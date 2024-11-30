@@ -1,4 +1,25 @@
 <?php
+
+function manejarError(int $nroError){
+    switch($nroError){
+        case 1:
+            echo "Error: Valor inválido. Por favor, ingrese un número.";
+            break;
+        case 2:
+            echo "Error: La temperatura no fue encontrada.";
+            break;
+        case 3:
+            echo "Error: El año ingresado no existe en la matriz.";
+            break;
+        case 4:
+            echo "Opción inválida. Intente nuevamente.";
+            break;
+        case 5:
+            echo "Mes inválido";
+            break;
+    }
+}
+
 function cargaAutomatica() {
 
 $a_2014=[2014,30,28,26,22,18,12,10,14,17,20,25,29];
