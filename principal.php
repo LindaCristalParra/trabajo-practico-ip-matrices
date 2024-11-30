@@ -41,6 +41,13 @@ function obtenerNombreMes(int $indiceMes) {
                 manejarError(5);    
             }      
 }
+function validarAnio(int $anio) {
+    if($anio >= 2014 && $anio <= 2023) {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
+}
 
 function manejarError(int $nroError) {
     switch($nroError){
