@@ -75,6 +75,12 @@ function manejarError(int $nroError) {
         case 5:
             echo "Mes inválido";
             break;
+        case 6:
+            echo "Datos inválidos, por favor ingresar un mes entre 1 y 12.\n";
+            break;
+        case 7:
+            echo "Datos inválidos, por favor ingresar un año entre 2014 y 2023.\n";
+            break;
     }
 }
 
@@ -351,7 +357,7 @@ function matrizAsociativa(array $matriz) {
         echo "9. Crear y mostrar matriz de invierno (jul-ago-sep) de últimos 5 años.\n";
         echo "10. Crear arreglo asociativo con todas las matrices.\n";
         echo "0. Salir.\n";
-        echo "Seleccione una opción, ingresando el número: ";
+        echo "Ingrese el número de la opción seleccionada: ";
         $opcionMenu = (int) trim(fgets(STDIN));
 
         // Ejecución de opciones del menú
@@ -368,12 +374,16 @@ function matrizAsociativa(array $matriz) {
             case 4:
                 echo "Ingrese año: ";
                 $anio = (int) trim(fgets(STDIN));
-                echo "Ingrese mes: ";
-                $mes = (int) trim(fgets(STDIN));
-                if (validarAnio($anio) && validarMes($mes)) {
-                    mostrarTempAnioMes($matrizTemperaturas, $anio, $mes);
+                if (validarAnio($anio)) {
+                    echo "Ingrese mes: ";
+                    $mes = (int) trim(fgets(STDIN));
+                    if (validarMes($mes)) {
+                        mostrarTempAnioMes($matrizTemperaturas, $anio, $mes);
+                    } else {
+                        manejarError(6);
+                    }
                 } else {
-                    echo "Datos inválidos, por favor ingresar un año entre 2014 y 2023 y un mes entre 1 y 12.\n";
+                    manejarError(7);
                 }
                 break;
             case 5:
@@ -382,7 +392,7 @@ function matrizAsociativa(array $matriz) {
                 if (validarAnio($anio)) {
                     mostrarTempAnio($matrizTemperaturas, $anio);
                 } else {
-                    echo "Datos inválidos, por favor ingresar un año entre 2014 y 2023.\n";
+                    manejarError(7);
                 }
                 break;
             case 6:
@@ -391,7 +401,7 @@ function matrizAsociativa(array $matriz) {
                 if (validarMes($mes)) {
                     mostrarTempMesYpromedio($matrizTemperaturas, $mes);
                 } else {
-                    echo "Datos inválidos, por favor ingresar un mes entre 1 y 12.\n";
+                    manejarError(6);
                 }
                 break;
             case 7:
@@ -410,8 +420,7 @@ function matrizAsociativa(array $matriz) {
                 echo "Saliendo del programa.\n";
                 break;
             default:
-                manejarError(4);
-                echo "Opción inválida. Intente nuevamente.\n";
+                manejarError(4);                
                 break;
         }
     } while ($opcionMenu !== 0);
