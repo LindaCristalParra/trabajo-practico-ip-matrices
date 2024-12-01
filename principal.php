@@ -206,14 +206,15 @@ function mostrarTempMesYpromedio(array $matriz, int $mes) {
     $matrizTempMes = [];
  
     while($fila < $anios){
+        $matrizTempMes[$fila][0] = $matriz[$fila][0];
         $matrizTempMes[$fila][1] = $matriz[$fila][$mes];
-        $suma++;
+        $suma= $suma+$matriz[$fila][$mes];
         $fila++;
     }
     $promedio = $suma/$anios;
     echo "La temperatura promedio del mes ", obtenerNombreMes($mes), " es ", $promedio, " ." ;
-    echo "Y las temperaturas segun el año son:" ;
-    //mostrarDatosMatriz($matrizTempMes, 1);
+    echo "Y las temperaturas segun el año son: \n" ;
+    mostrarDatosMatriz($matrizTempMes, $mes);
 }
 
 function mostrarTempExtremas(array $matriz): void {
