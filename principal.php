@@ -151,7 +151,7 @@ function mostrarDatosMatriz(array $matriz, int $indiceInicial): void {
 
 
 
-function tempAnioMes(array $matriz, int $anio, int $mes) {
+function mostrarTempAnioMes(array $matriz, int $anio, int $mes) {
     $fila = 0;
     $temp = 0;
     $cantAnios = count($matriz);
@@ -159,7 +159,7 @@ function tempAnioMes(array $matriz, int $anio, int $mes) {
 
     do {
         if($matriz[$fila][0] == $anio){
-            $temp == $matriz[$fila][$mes];
+            $temp = $matriz[$fila][$mes];
             $tempEncontrada = true;
         }
         $fila++;
@@ -168,7 +168,7 @@ function tempAnioMes(array $matriz, int $anio, int $mes) {
     if($tempEncontrada == false) {
         manejarError(2);
     }
-    echo "La temperatura de ", obtenerNombreMes($mes), " del año ", $anio, " es: ", $temp,  " °C." ;
+    echo "La temperatura de ", obtenerNombreMes($mes), " del año ", $anio, " es: ", $temp,  " °C.\n" ;
 }
 
 function mostrarTempAnio(array $matriz, int $anioSeleccionado): void {
