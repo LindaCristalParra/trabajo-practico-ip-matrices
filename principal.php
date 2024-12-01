@@ -2,40 +2,40 @@
 function obtenerNombreMes(int $indiceMes) {
     switch($indiceMes) {
             case 1:
-                echo "Enero";
+                return "Enero";
                 break;
             case 2:
-                echo "Febrero";
+                return "Febrero";
                 break;
             case 3:
-                echo "Marzo";
+                return "Marzo";
                 break;
             case 4:
-                echo "Abril";
+                return "Abril";
                 break;
             case 5:
-                echo "Mayo";
+                return "Mayo";
                 break;
             case 6:
-                echo "Junio";
+                return "Junio";
                 break;
             case 7:
-                echo "Julio";
+                return "Julio";
                 break;
             case 8:
-                echo "Agosto";
+                return "Agosto";
                 break;
             case 9:
-                echo "Septiembre";
+                return "Septiembre";
                 break;
             case 10:
-                echo "Octubre";
+                return "Octubre";
                 break;
             case 11:
-                echo "Noviembre";
+                return "Noviembre";
                 break;
             case 12:
-                echo "Diciembre";
+                return "Diciembre";
                 break;    
             default: 
                 manejarError(5);    
@@ -135,7 +135,7 @@ function mostrarDatosMatriz(array $matriz, int $indiceInicial): void {
     $cantAnios = count($matriz); // Obtener la cantidad de años (filas de la matriz)
 
     for ($i = 0; $i < $cantAnios; $i++) { // Iterar sobre los años
-        echo "Año " . $matriz[$i][0] . ": <br>"; // Mostrar el año (primer elemento de la fila)
+        echo "Año " . $matriz[$i][0] . ": \n"; // Mostrar el año (primer elemento de la fila)
         $textoMeses = "";
 
         for ($j = 1; $j < count($matriz[$i]); $j++) { // Iterar sobre los meses de cada año
@@ -145,7 +145,7 @@ function mostrarDatosMatriz(array $matriz, int $indiceInicial): void {
 
         // Eliminar la última coma y espacio del texto generado
         $textoMeses = substr($textoMeses, 0, -2);
-        echo $textoMeses . "<br><br>"; // Mostrar los datos del año
+        echo $textoMeses . "\n\n"; // Mostrar los datos del año
     }
 }
 
@@ -191,9 +191,9 @@ function mostrarTempAnio(array $matriz, int $anioSeleccionado): void {
     }
 
     // Mostrar las temperaturas del año seleccionado
-    echo "Año seleccionado: " . $matriz[$indiceAnio][0] . "<br>";
+    echo "Año seleccionado: " . $matriz[$indiceAnio][0] . "\n";
     for ($j = 1; $j <= count($matriz[$indiceAnio])-1; $j++) {
-        echo "Mes " . obtenerNombreMes($j) . ": " . $matriz[$indiceAnio][$j] . "<br>";
+        echo "Mes " . obtenerNombreMes($j) . ": " . $matriz[$indiceAnio][$j] . "\n";
     }
 }
 
@@ -242,13 +242,13 @@ function mostrarTempExtremas(array $matriz): void {
     }
 
     // Mostrar resultados
-    echo "Máxima temperatura: " . $maximo . "<br>" .
+    echo "Máxima temperatura: " . $maximo . "\n" .
          " Año: " . $matriz[$posMax[0]][0] . 
-         " Mes: " . obtenerNombreMes($posMax[1]) . "<br> <br>";
+         " Mes: " . obtenerNombreMes($posMax[1]) . "\n \n";
 
-    echo "Mínima temperatura: " . $minimo . "<br>" . 
+    echo "Mínima temperatura: " . $minimo . "\n" . 
          " Año: " . $matriz[$posMin[0]][0] . 
-         " Mes: " . obtenerNombreMes($posMin[1]) . "<br> <br>";
+         " Mes: " . obtenerNombreMes($posMin[1]) . "\n \n";
 }
 
 function matrizPrimavera(array $matriz): array {
