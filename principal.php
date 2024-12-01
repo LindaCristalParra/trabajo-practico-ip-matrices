@@ -287,14 +287,14 @@ function matrizInvierno(array $matriz) {
     for($i = $anios; $i <= (count($matriz) - 1); $i++){
         $matrizTempInvierno[$fila][0] = $matriz[$i][0];
         
-        for($j = $jul; $i <= $sep; $i++){
+        for($j = $jul; $j <= $sep; $j++){
             $matrizTempInvierno[$fila][$col] = $matriz[$i][$j];
             $col++;
         }
         $col = 1;
         $fila++;
     }
-    //mostrarDatosMatriz($matrizTempInvierno, $jul)
+    mostrarDatosMatriz($matrizTempInvierno, $jul);
     return $matrizTempInvierno;
 }
 
