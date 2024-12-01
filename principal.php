@@ -299,15 +299,16 @@ function matrizInvierno(array $matriz) {
 }
 
 function matrizAsociativa(array $matriz) {
-    $matrizPrimavera = matrizInvierno($matriz) ;
-    //$matrizInvierno = matrizPrimavera($matriz) ;
-    $matrizAsociativa = array('completa' => $matriz, /*'primavera' => $matrizPrimavera,*/ 'invierno' => $matrizInvierno);
-    echo "Datos de la matriz completa: " ;
-    //mostrarDatosMatriz($matrizAsociativa['completa'], 1)
-    echo "Datos de la matriz primavera: " ;
-    //mostrarDatosMatriz($matrizAsociativa['primavera'], 1)
-    echo "Datos de la matriz invierno: " ;
-    //mostrarDatosMatriz($matrizAsociativa['invierno'], 1)
+
+    echo "Datos de la matriz completa: \n" ;
+    mostrarDatosMatriz($matriz, 1) ;
+
+    echo "Datos de la matriz primavera: \n" ;
+    $matrizPrimavera = matrizPrimavera($matriz) ;
+
+    echo "Datos de la matriz invierno: \n" ;
+    $matrizInvierno = matrizInvierno($matriz) ;
+    $matrizAsociativa = array('completa' => $matriz, 'primavera' => $matrizPrimavera, 'invierno' => $matrizInvierno);
 
     return $matrizAsociativa;
 }
