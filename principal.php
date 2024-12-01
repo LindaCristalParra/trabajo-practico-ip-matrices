@@ -1,4 +1,13 @@
 <?php
+
+/**
+ * Grupo 13 - Parra linda y Robertazzi Lucia.
+ * Este proyecto se encuentra alojado en GitHub: https://github.com/lucia-uncoma/trabajo-practico-ip-matrices
+ * 
+ * Para el desarrollo del algoritmo creamos funciones adicionales para obtener nombre de meses,
+ * validar datos ingresados por teclado y manejar errores.
+ */
+
 function obtenerNombreMes(int $indiceMes) {
     switch($indiceMes) {
             case 1:
@@ -61,19 +70,19 @@ function validarMes(int $mes) {
 function manejarError(int $nroError) {
     switch($nroError){
         case 1:
-            echo "Error: Valor inválido. Por favor, ingrese un número.";
+            echo "Error: Valor inválido. Por favor, ingrese un número.\n";
             break;
         case 2:
-            echo "Error: La temperatura no fue encontrada.";
+            echo "Error: La temperatura no fue encontrada.\n";
             break;
         case 3:
-            echo "Error: El año ingresado no existe en la matriz.";
+            echo "Error: El año ingresado no existe en la matriz.\n";
             break;
         case 4:
-            echo "Opción inválida. Intente nuevamente.";
+            echo "Opción inválida. Intente nuevamente.\n";
             break;
         case 5:
-            echo "Mes inválido";
+            echo "Mes inválido.\n";
             break;
         case 6:
             echo "Datos inválidos, por favor ingresar un mes entre 1 y 12.\n";
@@ -85,21 +94,23 @@ function manejarError(int $nroError) {
 }
 
 function cargaAutomatica() {
+    /**Creación e inicialización  de arreglos por año, conteniendo en la posición 0 el año y
+     en las posiciones de 1 a 12, temperaturas correspondientes a cada mes, desde enero a diciembre.*/
+    $a_2014=[2014,30,28,26,22,18,12,10,14,17,20,25,29];
+    $a_2015=[2015,33,30,27,22,19,13,11,15,18,21,26,31];
+    $a_2016=[2016,34,32,29,21,18,14,12,16,18,21,27,32];
+    $a_2017=[2017,33,31,28,22,18,13,11,14,17,22,26,31];
+    $a_2018=[2018,32,30,28,22,17,12,9,13,16,20,24,30];
+    $a_2019=[2019,32,30,27,23,19,14,12,11,17,23,25,29];
+    $a_2020=[2020,31,29,28,21,19,13,10,12,16,22,27,29];
+    $a_2021=[2021,30,28,26,20,16,12,11,13,17,21,28,30];
+    $a_2022=[2022,31,29,27,21,17,12,11,15,18,22,26,30];
+    $a_2023=[2023,32,30,27,20,16,13,13,15,19,23,28,31];
 
-$a_2014=[2014,30,28,26,22,18,12,10,14,17,20,25,29];
-$a_2015=[2015,33,30,27,22,19,13,11,15,18,21,26,31];
-$a_2016=[2016,34,32,29,21,18,14,12,16,18,21,27,32];
-$a_2017=[2017,33,31,28,22,18,13,11,14,17,22,26,31];
-$a_2018=[2018,32,30,28,22,17,12,9,13,16,20,24,30];
-$a_2019=[2019,32,30,27,23,19,14,12,11,17,23,25,29];
-$a_2020=[2020,31,29,28,21,19,13,10,12,16,22,27,29];
-$a_2021=[2021,30,28,26,20,16,12,11,13,17,21,28,30];
-$a_2022=[2022,31,29,27,21,17,12,11,15,18,22,26,30];
-$a_2023=[2023,32,30,27,20,16,13,13,15,19,23,28,31];
+    $matriz= array($a_2014,$a_2015,$a_2016,$a_2017,$a_2018,$a_2019,$a_2020,$a_2021,$a_2022,$a_2023);
 
-$matriz= array($a_2014,$a_2015,$a_2016,$a_2017,$a_2018,$a_2019,$a_2020,$a_2021,$a_2022,$a_2023);
-
-return $matriz;
+    // Retorna matriz.
+    return $matriz;
 }
 
 function cargaManual() {
@@ -121,7 +132,7 @@ function cargaManual() {
 
                 // Validar si el valor ingresado es numérico
                 if (!is_numeric($entradaTemp)) {
-                    manejarError(1); // Manejo del error según tu lógica
+                    manejarError(1); // Manejo del error
                 }
             } while (!is_numeric($entradaTemp));
 
@@ -160,10 +171,12 @@ function mostrarDatosMatriz(array $matriz, int $indiceInicial): void {
 function mostrarTempAnioMes(array $matriz, int $anio, int $mes) {
     $fila = 0;
     $temp = 0;
+    // cantAnios representa las filas de la matriz.
     $cantAnios = count($matriz);
     $tempEncontrada = false;
 
     do {
+        // La primer columna contiene el anio de la fila, verifica si es el anio ingresado por parametro.
         if($matriz[$fila][0] == $anio){
             $temp = $matriz[$fila][$mes];
             $tempEncontrada = true;
@@ -174,6 +187,7 @@ function mostrarTempAnioMes(array $matriz, int $anio, int $mes) {
     if($tempEncontrada == false) {
         manejarError(2);
     }
+    // Mostrar resultados.
     echo "La temperatura de ", obtenerNombreMes($mes), " del año ", $anio, " es: ", $temp,  " °C.\n" ;
 }
 
@@ -199,7 +213,7 @@ function mostrarTempAnio(array $matriz, int $anioSeleccionado): void {
     // Mostrar las temperaturas del año seleccionado
     echo "Año seleccionado: " . $matriz[$indiceAnio][0] . "\n";
     for ($j = 1; $j <= count($matriz[$indiceAnio])-1; $j++) {
-        echo "Mes " . obtenerNombreMes($j) . ": " . $matriz[$indiceAnio][$j] . "\n";
+        echo "" . obtenerNombreMes($j) . ": " . $matriz[$indiceAnio][$j] . "\n";
     }
 }
 
@@ -208,16 +222,22 @@ function mostrarTempMesYpromedio(array $matriz, int $mes) {
     $fila = 0;
     $suma = 0;
     $promedio = 0;
+    // anios representa las filas de la matriz.
     $anios = count($matriz);
-    $matrizTempMes = [];
+    $matrizTempMes = array();
  
-    while($fila < $anios){
+    // Recorre la matriz y asigna los valores correspondientes al mes ingresado en la submatriz..
+    while($fila < $anios) {
         $matrizTempMes[$fila][0] = $matriz[$fila][0];
         $matrizTempMes[$fila][1] = $matriz[$fila][$mes];
-        $suma= $suma+$matriz[$fila][$mes];
+
+        // Acumula la suma de las temperaturas para luego calcular el promedio.
+        $suma= $suma + $matriz[$fila][$mes];
         $fila++;
     }
     $promedio = $suma/$anios;
+
+    // Mostrar resultados.
     echo "La temperatura promedio del mes ", obtenerNombreMes($mes), " es ", $promedio, " ." ;
     echo "Y las temperaturas segun el año son: \n" ;
     mostrarDatosMatriz($matrizTempMes, $mes);
@@ -249,12 +269,12 @@ function mostrarTempExtremas(array $matriz): void {
     }
 
     // Mostrar resultados
-    echo "Máxima temperatura: " . $maximo . "\n" .
-         " Año: " . $matriz[$posMax[0]][0] . 
+    echo "Máxima temperatura: " . $maximo . " °C.\n" .
+         " Año: " . $matriz[$posMax[0]][0] . ". " .
          " Mes: " . obtenerNombreMes($posMax[1]) . "\n \n";
 
-    echo "Mínima temperatura: " . $minimo . "\n" . 
-         " Año: " . $matriz[$posMin[0]][0] . 
+    echo "Mínima temperatura: " . $minimo . " °C.\n" . 
+         " Año: " . $matriz[$posMin[0]][0] . ". " .
          " Mes: " . obtenerNombreMes($posMin[1]) . "\n \n";
 }
 
@@ -286,13 +306,15 @@ function matrizInvierno(array $matriz) {
     $col = 1;
     $jul = 7;
     $sep = 9;
-    $meses = 3;
+    // anios representa las filas de la matriz
     $anios = (count($matriz) - 5);
-    $matrizTempInvierno =[];
+    $matrizTempInvierno =array();
 
     for($i = $anios; $i <= (count($matriz) - 1); $i++){
+        // Almacena el anio en la primera columna del arreglo.
         $matrizTempInvierno[$fila][0] = $matriz[$i][0];
         
+        // Recorre las columnas desde julio hasta septiembre y almacena el valor en la submatriz
         for($j = $jul; $j <= $sep; $j++){
             $matrizTempInvierno[$fila][$col] = $matriz[$i][$j];
             $col++;
@@ -300,12 +322,13 @@ function matrizInvierno(array $matriz) {
         $col = 1;
         $fila++;
     }
+    // Mostrar resultados.
     mostrarDatosMatriz($matrizTempInvierno, $jul);
     return $matrizTempInvierno;
 }
 
 function matrizAsociativa(array $matriz) {
-
+    // Mostrar Matrices.
     echo "Datos de la matriz completa: \n" ;
     mostrarDatosMatriz($matriz, 1) ;
 
@@ -314,6 +337,8 @@ function matrizAsociativa(array $matriz) {
 
     echo "Datos de la matriz invierno: \n" ;
     $matrizInvierno = matrizInvierno($matriz) ;
+
+    // Se contienen las matrices completa, primavera e invierno con clave asociativa.
     $matrizAsociativa = array('completa' => $matriz, 'primavera' => $matrizPrimavera, 'invierno' => $matrizInvierno);
 
     return $matrizAsociativa;
@@ -374,6 +399,8 @@ function matrizAsociativa(array $matriz) {
             case 4:
                 echo "Ingrese año: ";
                 $anio = (int) trim(fgets(STDIN));
+
+                // Se validan datos ingresados.
                 if (validarAnio($anio)) {
                     echo "Ingrese mes: ";
                     $mes = (int) trim(fgets(STDIN));
@@ -388,6 +415,8 @@ function matrizAsociativa(array $matriz) {
                 break;
             case 5:
                 echo "Ingrese año: ";
+
+                // Se validan datos ingresados.
                 $anio = (int) trim(fgets(STDIN));
                 if (validarAnio($anio)) {
                     mostrarTempAnio($matrizTemperaturas, $anio);
@@ -398,6 +427,8 @@ function matrizAsociativa(array $matriz) {
             case 6:
                 echo "Ingrese mes: ";
                 $mes = (int) trim(fgets(STDIN));
+
+                // Se validan datos ingresados.
                 if (validarMes($mes)) {
                     mostrarTempMesYpromedio($matrizTemperaturas, $mes);
                 } else {
